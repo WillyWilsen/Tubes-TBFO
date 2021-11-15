@@ -1,0 +1,55 @@
+
+
+
+/*CFG TIAP KATA KUNCI DI PYTHON*/
+
+
+/*****   Main Content *****/
+
+START -> CONTENT
+CONTENT -> 
+ITERATE_CONTENT -> FOR_CONTENT | WHILE_CONTENT | LIST | DICT | VARIABLE | CONSTANT
+FLOW_CONTENT -> CONTINUE_CONTENT | BREAK_CONTENT
+
+/**************************/
+
+
+/*****   Conditional   ******/
+
+IF -> a
+IF_CONTENT -> IF_HEADER CONTENT | IF_CONTENT ELIF_CONTENT | IF_CONTENT ELSE_CONTENT
+IF_HEADER -> IF OPERASI_CONDITIONAL COLON NEWLINE
+
+/****************************/
+
+
+/*****  Loop *****/
+FOR -> b
+IN -> c
+FOR_CONTENT -> FOR_HEADER CONTENT
+FOR_HEADER -> FOR FOR_VARIABLE IN ITERABLE COLON NEWLINE 
+FOR_VARIABLE -> VARIABLE | VARIABLE COMMA FOR_VARIABLE
+ITERABLE -> STRING | LIST | VARIABLE | FUNCTION | MATH_CONTENT | DICT
+
+/*While Loop*/
+WHILE -> d
+WHILE_CONTENT -> WHILE_HEADER CONTENT
+WHILE_HEADER -> WHILE OPERASI_CONDITIONAL COLON NEWLINE 
+
+/****************/
+
+/*****    Import     *****/
+
+
+FROM -> e
+
+
+
+/************************/
+
+/*****    And, Or, Not    *****/
+
+NOT -> f
+
+
+/******************************/
