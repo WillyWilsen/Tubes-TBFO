@@ -194,7 +194,7 @@ MINUS -> -
 MULTIPLY -> *
 NEWLINE -> NEWLINE NEWLINE | __new_line__
 SPACE -> SPACE SPACE | __space__
-OR_SYMBOL -> __or__symbol__
+OR_SYMBOL -> __or_symbol__
 RELATION_OP -> = = | ! = | < = | > = | < | > | IS 
 ASS_OPERATION -> = | + = | - = | * = | * * = | / = | / / = | % = 
 ARITH_OP -> + | - | * | * * | / | / / | %
