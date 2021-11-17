@@ -7,14 +7,14 @@
 /*****   Main Content *****/
 
 START -> CONTENT
-CONTENT -> 
+CONTENT -> CONTENT NEWLINE CONTENT | NEWLINE CONTENT | CONTENT NEWLINE | IF_CONTENT | ITERATE_CONTENT | CLASS_CONTENT | DEF_FUNC_CONTENT | ASS_OPERATION | FLOW_CONTENT | IMP_CONTENT | RAI_OP | FUNCTION | METH_CONTENT | WITH_CONTENT | PASS | STRING | LIST | DICT | VARIABLE | CONSTANT | OPERASI_CONDITIONAL | ASS_OPERATION
 ITERATE_CONTENT -> FOR_CONTENT | WHILE_CONTENT | LIST | DICT | VARIABLE | CONSTANT
 FLOW_CONTENT -> CONTINUE_CONTENT | BREAK_CONTENT
 
 /**************************/
 
 
-/*****   Conditional   ******/
+/*****   Conditional  Grammar ******/
 
 IF -> a
 IF_CONTENT -> IF_HEADER CONTENT | IF_CONTENT ELIF_CONTENT | IF_CONTENT ELSE_CONTENT
@@ -23,22 +23,46 @@ IF_HEADER -> IF OPERASI_CONDITIONAL COLON NEWLINE
 /****************************/
 
 
-/*****  Loop *****/
+/*****  Loop  Grammar  *****/
+/*For Loop*/
 FOR -> b
 IN -> c
 FOR_CONTENT -> FOR_HEADER CONTENT
 FOR_HEADER -> FOR FOR_VARIABLE IN ITERABLE COLON NEWLINE 
 FOR_VARIABLE -> VARIABLE | VARIABLE COMMA FOR_VARIABLE
-ITERABLE -> STRING | LIST | VARIABLE | FUNCTION | MATH_CONTENT | DICT
+ITERABLE -> STRING | LIST | VARIABLE | FUNCTION | METH_CONTENT | DICT
 
 /*While Loop*/
 WHILE -> d
 WHILE_CONTENT -> WHILE_HEADER CONTENT
 WHILE_HEADER -> WHILE OPERASI_CONDITIONAL COLON NEWLINE 
 
+/*Etc*/
+
 /****************/
 
-/*****    Import     *****/
+/**** Pass Grammar ****/
+
+
+
+
+
+/**********************/
+
+
+/****** Class Grammar *****/
+
+
+
+
+
+
+
+/**************************/
+
+
+
+/*****    Import  Grammar   *****/
 
 
 FROM -> e
@@ -47,9 +71,142 @@ FROM -> e
 
 /************************/
 
-/*****    And, Or, Not    *****/
+/*****    And, Or, Not Grammar  *****/
 
 NOT -> f
 
 
 /******************************/
+
+
+/********** True, False, None Grammar ********/
+
+
+
+
+/*********************************************/
+
+/******  Def Function Grammar *******/
+
+//Def function
+
+
+
+RETURN -> l
+
+// Content
+
+
+
+// Conditional in function 
+
+
+
+
+// Loop in function
+// For Loop
+
+// While Loop
+
+// Continue and break
+
+// With in function 
+
+/************************************/
+
+
+/***** With Grammar *****/
+
+WITH_CONTENT -> WITH_HEADER CONTENT
+WITH_HEADER -> WITH WITH_ST AS VARIABLE COLON NEWLINE
+WITH_ST -> FUNCTION | METH_CONTENT_FUNC
+WITH -> A
+
+/************************/
+
+/***** Conditional Operation Grammar *******/
+
+
+
+/*******************************************/
+
+/***** Assignment Operation Grammar *******/
+
+
+
+/*******************************************/
+
+/***** Arithmetic Operation Grammar *******/
+
+
+
+/*******************************************/
+
+
+/******** Atom Grammar *******/
+//Variable
+
+//Name
+
+//Number
+
+
+/*****************************/
+
+
+/******* Function and Method Grammar *******/
+//Function 
+
+
+//Method
+
+
+
+/*******************************************/
+
+/******** String, List, Dictionary ********/
+//String
+
+
+//Dict
+
+
+//List
+
+
+/****************************************/
+
+/************* Raise Grammar ************/
+
+
+
+
+/****************************************/
+/**** Symbol ****/
+
+QUOTE -> '
+QQUOTE -> "
+COLON -> :
+COMMA -> ,
+DOT -> .
+PLUS -> +
+MINUS -> -
+MULTIPLY -> *
+NEWLINE -> NEWLINE NEWLINE | __new_line__
+SPACE -> SPACE SPACE | __space__
+OR_SYMBOL -> __or__symbol__
+RELATION_OP -> = = | ! = | < = | > = | < | > | IS 
+ASS_OPERATION -> = | + = | - = | * = | * * = | / = | / / = | % = 
+ARITH_OP -> + | - | * | * * | / | / / | %
+LOGIC_OP -> AND | OR
+MEMBER_OP -> IN | NOT SPACE IN
+IDN_OP -> IS | IS SPACE NOT
+BIT_OP -> & | OR_SYMBOL | ^ | > > | < < | ~\
+SQUARE_BRAKET_OPN -> [
+SQUARE_BRAKET_CLS -> ]
+CIRCLE_BRAKET_OPN -> {
+CIRCLE_BRAKET_CLS -> }
+NRM_BRAKET_OPN -> (
+NRM_BRAKET_CLS -> )
+
+/***********************************/
