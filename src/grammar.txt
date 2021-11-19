@@ -199,6 +199,7 @@ RAI_BODY -> NRM_BKT_OPN RAI_BODY NRM_BKT_CLS | VARIABLE | CONSTANT | COND_OPERAT
 RAISE -> p
 
 /****************************************/
+
 /**** Symbol ****/
 
 QUOTE -> '
