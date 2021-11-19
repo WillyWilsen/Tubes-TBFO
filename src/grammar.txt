@@ -1,18 +1,17 @@
 /*CFG TIAP KATA KUNCI DI PYTHON*/
 
-
-/*****   Main Content *****/
-
+/******* Main Content ******/
+/********** START **********/
 START -> CONTENT
-CONTENT -> CONTENT NEWLINE CONTENT | NEWLINE CONTENT | CONTENT NEWLINE | IF_CONTENT | ITERATE_CONTENT | CLASS_CONTENT | DEF_FUNC_CONTENT | ASS_OPERATION | FLOW_CONTENT | IMP_CONTENT | RAI_OP | FUNCTION | METH_CONTENT | WITH_CONTENT | PASS | STRING | LIST | DICT | VARIABLE | CONSTANT | OPERASI_CONDITIONAL | ASS_OPERATION
+CONTENT -> CONTENT NEWLINE CONTENT | NEWLINE CONTENT | CONTENT NEWLINE | IF_CONTENT | ITERATE_CONTENT | CLASS_CONTENT | DEF_FUNC_CONTENT | ASS_OPERATION | FLOW_CONTENT | IMP_CONTENT | RAI_OP | FUNCTION | METH_CONTENT | WITH_CONTENT | PASS | STRING | LIST | DICT | VARIABLE | CONSTANT | NONE | OPERASI_CONDITIONAL | ASS_OPERATION
 ITERATE_CONTENT -> FOR_CONTENT | WHILE_CONTENT | LIST | DICT | VARIABLE | CONSTANT
 FLOW_CONTENT -> CONTINUE_CONTENT | BREAK_CONTENT
+/*********** END ***********/
+/***************************/
 
-/**************************/
 
-
-/*****   Conditional  Grammar ******/
-
+/****** Conditional Grammar ******/
+/************* START *************/
 IF -> a
 ELIF -> b
 ELSE -> c
@@ -22,11 +21,12 @@ ELIF_CONTENT -> ELIF_HEADER CONTENT | ELIF_CONTENT ELIF_CONTENT | ELIF_CONTENT E
 ELIF_HEADER -> ELIF COND_OPERATION COLON NEWLINE
 ELSE_CONTENT -> ELSE_HEADER CONTENT
 ELSE_HEADER -> ELSE COLON NEWLINE
+/************** END **************/
+/*********************************/
 
-/****************************/
 
-
-/*****  Loop  Grammar  *****/
+/********* Loop  Grammar ********/
+/************ START *************/
 /*For Loop*/
 FOR -> d
 IN -> e
@@ -41,167 +41,213 @@ WHILE_CONTENT -> WHILE_HEADER CONTENT
 WHILE_HEADER -> WHILE OPERASI_CONDITIONAL COLON NEWLINE 
 
 /*Etc*/
+ITERATE -> FOR_HEADER | FOR_CONTENT | WHILE_HEADER | WHILE_CONTENT
 
-/****************/
+CONTINUE -> g NEWLINE
+CONTINUE_CONTENT -> ITERATE CONTENT | ITERATE CONTINUE CONTENT
 
-/**** Pass Grammar ****/
-PASS -> g
-
-
-
-
-/**********************/
-
-
-/****** Class Grammar *****/
+BREAK -> h NEWLINE
+BREAK_CONTENT -> ITERATE BREAK | ITERATE BREAK CONTENT
+/************* END *************/
+/*******************************/
 
 
+/******** Pass Grammar ******/
+/********** START ***********/
+PASS -> i
+/*********** END ************/
+/****************************/
 
 
+/******* Class Grammar ******/
+/*********** START **********/
+CLASS -> j
+CLASS_CONTENT -> CLASS_HEADER CLASS_BODY
+CLASS_HEADER -> CLASS NAME COLON NEWLINE | CLASS NAME NRM_BKT_OPN CLASS_PARAM NRM_BKT_CLS COLON NEWLINE
+CLASS_PARAM -> CLASS_PARAM COMMA CLASS_PARAM | NAME
+CLASS_BODY -> CLASS_BODY NEWLINE CLASS_BODY | CLASS_BODY NEWLINE | IF_CONTENT | ITERATE_CONTENT | CLASS_CONTENT | DEF_FUNC_CONTENT | ASS_OPERATION | FLOW_CONTENT | IMP_OPERATION | FUNCTION | METH_CONTENT | PASS | STRING
+/************ END **********/
+/***************************/
 
 
+/******* Def Function Grammar *******/
+/************** START ***************/
+/*Def function*/
+DEF -> k
+DEF_FUNC_CONTENT -> DEF_FUNC_HEADER DEF_FUNC_BODY
+DEF_FUNC_HEADER -> DEF NAME NRM_BKT_OPN DEF_FUNC_PARAM NRM_BKT_CLS COLON NEWLINE | DEF NAME NRM_BKT_OPN NRM_BKT_OPN NRM_BKT_CLS COLON NEWLINE
+DEF_FUNC_BODY -> DEF_FUNC_BODY NEWLINE DEF_FUNC_BODY | CONTENT_FUNC
+DEF_FUNC_RETURN -> RETURN ART_OPERATION | RETURN COND_OPERATION | RETURN DEF_FUNC_RETURN_VAL | RETURN
+DEF_FUNC_RETURN_VAL -> METH_CONTENT | FUNCTION | VARIABLE | LIST | STRING | DICT | CONSTANT | NONE
+DEF_FUNC_PARAM -> DEF_FUNC_PARAM COMMA DEF_FUNC_PARAM | NAME | NAME COLON NAME
+RETURN -> l
 
-/**************************/
+/*Content*/
+CONTENT_FUNC -> CONTENT_FUNC NEWLINE CONTENT_FUNC | CONTENT_FUNC NEWLINE | IF_CONTENT_FUNC | FOR_CONTENT_FUNC | WHILE_CONTENT_FUNC | CONTINUE_CONTENT_FUNC | BREAK_CONTENT_FUNC | CLASS_CONTENT | DEF_FUNC_CONTENT | ASS_OPERATION | IMP_OPERATION | RAI_OP | FUNCTION | METH_CONTENT | WITH_CONTENT_FUNC | PASS | STRING | DEF_FUNC_RETURN | LIST | DICT | VARIABLE | CONSTANT | NONE
+
+/*Conditional in function*/
+IF_CONTENT_FUNC -> IF_HEADER CONTENT_FUNC | IF_CONTENT_FUNC ELIF_CONTENT_FUNC | IF_CONTENT_FUNC ELSE_CONTENT_FUNC
+ELIF_CONTENT_FUNC -> ELIF_HEADER CONTENT_FUNC | ELIF_CONTENT_FUNC ELIF_CONTENT_FUNC | ELIF_CONTENT_FUNC ELSE_CONTENT_FUNC
+ELSE_CONTENT_FUNC -> ELSE_HEADER CONTENT_FUNC
+
+/* Loop in function */
+// While Loop
+WHILE_CONTENT_FUNC -> WHILE_HEADER CONTENT_FUNC
+
+//For Loop
+FOR_CONTENT_FUNC -> FOR_HEADER CONTENT_FUNC
+
+/* Continue and Break in function */
+ITERATE_FUNC -> FOR_HEADER | FOR_HEADER CONTENT_FUNC | WHILE_HEADER | WHILE_CONTENT_FUNC
+
+CONTINUE_CONTENT_FUNC -> ITERATE_FUNC CONTINUE | ITERATE CONTINUE CONTENT_FUNC
+
+BREAK_CONTENT_FUNC -> ITERATE_FUNC BREAK | ITERATE_FUNC BREAK CONTENT_FUNC
+
+/* With in function */
+WITH_CONTENT_FUNC -> WITH_HEADER CONTENT_FUNC
+/*************** END ****************/
+/************************************/
 
 
+/********** Conditional Operation Grammar *********/
+/********************* START **********************/
+COND_OPERATION -> NRM_BKT_OPN COND_OPERATION NRM_BKT_CLS | COND_OPERAND COND_OPERATOR COND_OPERATION | COND_OPERAND
+COND_OPERATOR -> REL_OP | LOG_OP | MEM_OP | IDN_OP
+COND_OPERAND -> NOT COND_OPERAND | VARIABLE | CONSTANT | ART_OPERATION | METH_CONTENT | FUNCTION | LIST | STRING | NONE | NRM_BKT_OPN COND_OPERAND NRM_BKT_CLS
+/********************** END ***********************/
+/**************************************************/
 
-/*****    Import  Grammar   *****/
 
+/***** Assignment Operation Grammar *****/
+/****************** START ***************/
+ASS_OPERATION -> VARIABLE ASS_OPERATOR ASS_OPERAND
+ASS_OPERATOR -> ASS_OP
+ASS_OPERAND -> NRM_BKT_OPN ASS_OPERAND NRM_BKT_CLS | VARIABLE | CONSTANT | COND_OPERATION | ART_OPERATION | METH_CONTENT | FUNCTION | LIST | STRING | DICT | NONE
+/****************** END *****************/
+/****************************************/
+
+
+/***** Arithmetic Operation Grammar *****/
+/***************** START ****************/
+ART_OPERATION -> NRM_BKT_OPN ART_OPERATION NRM_BKT_CLS | ART_OPERATION ART_OPERATOR ART_OPERATION | ART_OPERAND
+ART_OPERATOR -> ART_OP | BIT_OP
+ART_OPERAND -> VARIABLE | CONSTANT | METH_CONTENT | FUNCTION
+/***************** END ******************/
+/****************************************/
+
+
+/**************** Import  Grammar **************/
+/********************* START *******************/
 IMP_OPERATION -> FROM IMP_CONTENT IMPORT IMPT_MOD | IMPORT IMP_CONTENT | IMPORT AS_BLOCK
 AS_BLOCK -> AS_BLOCK COMMA AS_BLOCK | IMP_CONTENT AS NAME
 IMP_CONTENT -> IMP_CONTENT DOT IMP_CONTENT | NAME
 IMPT_MOD -> NAME | ALL | AS_BLOCK | IMPT_MOD COMMA IMPT_MOD
 ALL -> *
-AS -> h
-IMPORT -> i
-FROM -> j
+AS -> m
+IMPORT -> n
+FROM -> o
+/********************* END *********************/
+/***********************************************/
 
 
-
-/************************/
-
-/*****    And, Or, Not Grammar  *****/
-
-OR -> k
-NOT -> l
-
-
-/******************************/
+/****************** Raise Grammar ****************/
+/********************* START *********************/
+RAI_OP -> RAISE RAI_BODY
+RAI_BODY -> NRM_BKT_OPN RAI_BODY NRM_BKT_CLS | VARIABLE | CONSTANT | COND_OPERATION | ART_OPERATION | METH_CONTENT | FUNCTION | LIST | STRING | DICT | NONE
+RAISE -> p
+/********************** END **********************/
+/*************************************************/
 
 
-/********** True, False, None Grammar ********/
+/*************** And Or Not Grammar **************/
+/********************* START *********************/
+AND -> q
+OR -> r
+NOT -> s
+IS -> t
+/********************** END **********************/
+/*************************************************/
 
 
+/*********** True False None Grammar *************/
+/********************* START *********************/
+TRUE -> u
+FALSE -> v
+NONE -> w
+/*********************** END *********************/
+/*************************************************/
 
 
-/*********************************************/
+/************** Atom Grammar ************/
+/***************** START ****************/
+/*Variable*/
+VARIABLE -> NRM_BKT_OPN VARIABLE NRM_BKT_CLS | VAR_CTN
+VAR_CTN -> NAME | NAME VAR_IDX | METH_CONTENT_NAME | METH_CONTENT_NAME VAR_IDX
+VAR_IDX -> VAR_IDX VAR_IDX | [ IDX ] | [ COLON ] | [ IDX COLON ] | [ COLON IDX ] | [ IDX COLON IDX ] | [ COLON COLON ] | [ COLON COLON IDX ] | [ COLON IDX COLON ] | [ COLON IDX COLON IDX ] | [ IDX COLON COLON ] | [ IDX COLON COLON IDX ] | [ IDX COLON IDX COLON ] | [ IDX COLON IDX COLON IDX ]
+IDX -> VARIABLE | CONSTANT | ART_OPERATION | STRING
 
-/******  Def Function Grammar *******/
+/*Name*/
+NAME -> x
 
-//Def function
-DEF -> m
-DEF_FUNC_CONTENT -> DEF_FUNC_HEADER DEF_FUNC_BODY
-DEF_FUNC_HEADER -> DEF NAME NRM_BKT_OPN DEF_FUNC_PARAM NRM_BKT_CLS COLON NEWLINE | DEF NAME NRM_BKT_OPN NRM_BKT_CLS COLON NEWLINE
-DEF_FUNC_BODY -> DEF_FUNC_BODY NEWLINE DEF_FUNC_BODY | CONTENT_FUNC
-DEF_FUNC_RETURN -> RETURN ART_OPERATION | RETURN COND_OPERATION | RETURN DEF_FUNC_RETURN_VAL | RETURN
-DEF_FUNC_RETURN_VAL -> METH_CONTENT | FUNCTION | VARIABLE | LIST | STRING | DICT | CONSTANT | NONE
-DEF_FUNC_PARAM -> DEF_FUNC_PARAM COMMA DEF_FUNC_PARAM | NAME
-
-RETURN -> n
-
-// Content
-
-
-
-// Conditional in function 
-
-IF_CONTENT_FUNC -> IF_HEADER CONTENT_FUNC | IF_CONTENT_FUNC ELIF_CONTENT_FUNC | IF_CONTENT_FUNC ELSE_CONTENT_FUNC
-ELIF_CONTENT_FUNC -> ELIF_HEADER CONTENT_FUNC | ELIF_CONTENT_FUNC ELIF_CONTENT_FUNC | ELIF_CONTENT_FUNC ELSE_CONTENT_FUNC
-ELSE_CONTENT_FUNC -> ELSE_HEADER CONTENT_FUNC
-
-// Loop in function
-// For Loop
-
-// While Loop
-
-// Continue and break
-
-// With in function 
-
-/************************************/
+/*Number*/
+NUMBER -> PLUS NUMBER | MINUS NUMBER | NUMBER_CTN
+POSITIVE_NUMBER -> PLUS POSITIVE_NUMBER | NUMBER_CTN
+NUMBER_CTN -> y
+CONSTANT -> NRM_BKT_OPN CONSTANT NRM_BKT_CLS | CON_CTN
+CON_CTN -> TRUE | FALSE | NUMBER
+/***************** END ******************/
+/****************************************/
 
 
-/***** With Grammar *****/
+/********** Function and Method  Grammar ********/
+/******************** START *********************/
+/*Function*/
+FUNCTION -> FUNCTION_BASE | FUNCTION_BASE VAR_IDX
+FUNCTION_BASE -> VARIABLE NRM_BKT_OPN FUNCTION_PARAM NRM_BKT_CLS | VARIABLE NRM_BKT_OPN NRM_BKT_CLS
+FUNCTION_PARAM -> FUNCTION_PARAM COMMA FUNCTION_PARAM | VARIABLE | CONSTANT | STRING | LIST | DICT | NONE | FUNCTION | METH_CONTENT | ART_OPERATION | COND_OPERATION | ASS_OPERATION
 
+/*Method*/
+METH_CONTENT -> METH_INIT DOT METH_CONTENT | METH_BACK_FUNC | METH_BACK_NAME
+METH_CONTENT_NAME -> METH_INIT DOT METH_CONTENT_NAME | METH_BACK_NAME
+METH_CONTENT_FUNC -> METH_INIT DOT METH_CONTENT_FUNC | METH_BACK_FUNC
+METH_INIT -> NRM_BKT_OPN METH_INIT NRM_BKT_CLS | METH_BACK_FUNC | METH_BACK_NAME
+METH_BACK_FUNC -> FUNCTION | FUNCTION VAR_IDX
+METH_BACK_NAME -> NAME | NAME VAR_IDX
+/********************* END **********************/
+/************************************************/
+
+
+/******* String, Dictionary, List Grammar *******/
+/********************* START ********************/
+/*String*/
+STRING -> z | z VAR_IDX | STRING MULTIPLY POSITIVE_NUMBER | STRING PLUS STRING
+
+DICT -> CRL_BKT_OPN DICT_CONTENT CRL_BKT_CLS | CRL_BKT_OPN CRL_BKT_CLS | CRL_BKT_OPN NEWLINE DICT_CONTENT CRL_BKT_CLS | CRL_BKT_OPN NEWLINE DICT_CONTENT NEWLINE CRL_BKT_CLS | CRL_BKT_OPN DICT_CONTENT NEWLINE CRL_BKT_CLS
+DICT_CONTENT -> DICT_TYPE COMMA DICT_TYPE | DICT_TYPE | DICT_TYPE COMMA NEWLINE DICT_TYPE
+DICT_TYPE -> DICT_TYPES COLON DICT_TYPES
+DICT_TYPES -> VARIABLE | CONSTANT | STRING | FUNCTION | METH_CONTENT | NONE
+
+LIST -> SQR_BKT_OPN LIST_CONTENT SQR_BKT_CLS | SQR_BKT_OPN SQR_BKT_CLS
+LIST_TYPE -> VARIABLE | CONSTANT | STRING | FUNCTION | METH_CONTENT | LIST | DICT | NONE
+LIST_CONTENT -> LIST_TYPE | LIST_CONTENT COMMA LIST_TYPE | LIST_TYPE FOR VARIABLE IN FUNCTION
+/*** STRING, DICTIONARY AND LIST END ***/
+/********************* END **********************/
+/************************************************/
+
+
+/***************** With Grammar ******************/
+/******************** START **********************/
 WITH_CONTENT -> WITH_HEADER CONTENT
 WITH_HEADER -> WITH WITH_ST AS VARIABLE COLON NEWLINE
 WITH_ST -> FUNCTION | METH_CONTENT_FUNC
 WITH -> A
-
-/************************/
-
-/***** Conditional Operation Grammar *******/
+/********************** END **********************/
+/*************************************************/
 
 
-
-/*******************************************/
-
-/***** Assignment Operation Grammar *******/
-
-
-
-/*******************************************/
-
-/***** Arithmetic Operation Grammar *******/
-
-
-
-/*******************************************/
-
-
-/******** Atom Grammar *******/
-//Variable
-
-//Name
-
-//Number
-
-
-/*****************************/
-
-
-/******* Function and Method Grammar *******/
-//Function 
-
-
-//Method
-
-
-
-/*******************************************/
-
-/******** String, List, Dictionary ********/
-//String
-
-
-//Dict
-
-
-//List
-
-
-/****************************************/
-
-/************* Raise Grammar ************/
-
-RAI_OP -> RAISE RAI_BODY
-RAI_BODY -> NRM_BKT_OPN RAI_BODY NRM_BKT_CLS | VARIABLE | CONSTANT | COND_OPERATION | ART_OPERATION | METH_CONTENT | FUNCTION | LIST | STRING | DICT | NONE
-RAISE -> p
-
-/****************************************/
-
-/**** Symbol ****/
-
+/**************** Symbols Grammar ****************/
+/********************* START *********************/
 QUOTE -> '
 QQUOTE -> "
 COLON -> :
@@ -210,7 +256,7 @@ DOT -> .
 PLUS -> +
 MINUS -> -
 MULTIPLY -> *
-NEWLINE -> NEWLINE NEWLINE | __new_line__
+NEWLINE -> NEWLINE NEWLINE | __new_line__ | __new_line2__
 SPACE -> SPACE SPACE | __space__
 OR_SYMBOL -> __or_symbol__
 RELATION_OP -> = = | ! = | < = | > = | < | > | IS 
@@ -226,5 +272,5 @@ CIRCLE_BRAKET_OPN -> {
 CIRCLE_BRAKET_CLS -> }
 NRM_BRAKET_OPN -> (
 NRM_BRAKET_CLS -> )
-
-/***********************************/
+/*********************** END *********************/
+/*************************************************/
