@@ -1,6 +1,11 @@
 #Program Utama Compiler#
 from converter import CFGfromTXT, CFGtoCNF, displayGrammar, turntoCNF
+from CYK import CYK
 
+def fileReader(path):
+    with open(path, "r") as f:
+        content = f.read()
+    return content
 
 
 
