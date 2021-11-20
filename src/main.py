@@ -5,6 +5,6 @@ CFG = CFGfromTXT("grammar.txt")
 
 #displayGrammar(CFG)
 
-CNF = turntoCNF(CFG)
+CNF = CFGtoCNF(CFG)
 
 displayGrammar(CNF)
