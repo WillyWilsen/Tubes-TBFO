@@ -25,7 +25,7 @@ def displayGrammar(dict):
     for var in dict:
         print(var,"-> ",end="")
         for i in range(len(dict[var])):
-            if i == len(dict[var] - 1):
+            if i == len(dict[var]) - 1:
                 print(dict[var][i])
             else:
                 print(dict[var][i],"| ",end="")
@@ -41,6 +41,7 @@ def isVariableValid(item):
             return False
     return True
 
+#fungsi ini dibutuhkan pada saat akan mengubah CFG menjadi CNF
 def removeUnitProductioninCFG(CFG):
     for variable in CFG:
         productions = CFG[variable]
@@ -55,3 +56,39 @@ def removeUnitProductioninCFG(CFG):
                     repeat = True
                     break
     return CFG
+
+#fungsi ini dibutuhkan pada saat akan menggunakan algoritma CYK, karena CYK menerima masukan dalam bentuk CNF
+def turntoCNF(CFG):
+    newCFG = {}
+    for variable in CFG:
+        terminals = []
+        productions = CFG[variable]
+        #mencari terminals di CFG
+        processProduction = [production for production in productions if len(production) > 1]
+        for production in processProduction:
+            for item in production:
+                if not(isVariableValid(item) and item not in terminals):
+                    terminals.append(item)
+        #update CFG ke CNF
+        for i, terminal in enumerate(terminals):
+            newCFG.update({f"{variable}_TERM_{i + 1}":[[terminal]]})
+            for idx, j in enumerate(productions):
+                if len(j) > 1:
+                    for k in range(len(j)):
+                        if len(productions[idx][k]) == len(terminal):
+                            productions[idx][k] = productions[idx][k].replace(terminal, f"{variable}_TERM_{i + 1}")
+        idx = 1
+        for i in range(len(productions)):
+            while len(productions[i]) > 2:
+                newCFG.update({f"{variable}_EXT_{idx}": [[productions[i][0], productions[i][1]]]})
+                productions[i] = productions[i][1:]
+                productions[i][0] = f"{variable}_EXT_{idx}"
+                idx += 1
+    CFG.update(newCFG)
+    return CFG
+
+def CFGtoCNF(CFG):
+    CFG = removeUnitProductioninCFG(CFG)
+    CNF = turntoCNF(CFG)
+    return CNF
+
