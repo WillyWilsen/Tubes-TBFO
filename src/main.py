@@ -8,3 +8,7 @@ CFG = CFGfromTXT("grammar.txt")
 CNF = CFGtoCNF(CFG)
 
 displayGrammar(CNF)
+
+
+def startCompiler():
+    print()
