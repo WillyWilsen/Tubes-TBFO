@@ -3,6 +3,10 @@ from copy import deepcopy
 from os import replace
 import string
 
+#fungsi ini bertujuan untuk mengubah grammar yang awalnya berada pada file txt,
+#maka akan di ubah menjadi sebuah grammar dalam bahasa python, yang di simpan dalam bentuk
+#dictionary
+
 def CFGfromTXT(grammarPath):
     CFG_Production_Rule = {}
     with open(grammarPath,'r') as f:
