@@ -266,11 +266,11 @@ LOG_OP -> AND | OR
 MEM_OP -> IN | NOT SPACE IN
 IDN_OP -> IS | IS SPACE NOT
 BIT_OP -> & | OR_SYMBOL | ^ | > > | < < | ~\
-SQUARE_BRAKET_OPN -> [
-SQUARE_BRAKET_CLS -> ]
-CIRCLE_BRAKET_OPN -> {
-CIRCLE_BRAKET_CLS -> }
-NRM_BRAKET_OPN -> (
-NRM_BRAKET_CLS -> )
+SQR_BKT_OPN -> [
+SQR_BKT_CLS -> ]
+CRL_BKT_OPN -> {
+CRL_BKT_CLS -> }
+NRM_BKT_OPN -> (
+NRM_BKT_CLS -> )
 /*********************** END *********************/
 /*************************************************/
