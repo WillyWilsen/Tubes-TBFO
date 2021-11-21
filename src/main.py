@@ -52,7 +52,7 @@ def fileReader(path):
     return content
 
 
-def nameError(inp):
+def displayinp(inp):
     newInp = ""
     while inp:
         x = re.search("[0-9]+[A-Za-z_]+", inp)
@@ -92,6 +92,8 @@ if __name__ == "__main__":
     CNF = CFGtoCNF(CFG)
 
     # input file
+    #apabila user tidak menginput file baru, maka secara default akan menggunakan file
+    #inputAcc.py yang telah tersedia
     if (len(sys.argv) < 2):
         filePathInput = "inputAcc.py"
     else:
@@ -104,7 +106,7 @@ if __name__ == "__main__":
         print("Terminating program...\n")
         exit(0)
 
-    inpHighlighted = nameError(inp)
+    inpModify = displayinp(inp)
     source = inp
 
     inp = processInput(inp)
@@ -113,17 +115,20 @@ if __name__ == "__main__":
     print("Waiting for your verdict...\n")
 
     print("=========================== Source Code ===============================")
-    for i, line in enumerate(inpHighlighted.split("\n")):
+    
+    for i, line in enumerate(inpModify.split("\n")):
         idx = f" {i + 1} | " if len(str(i+1)) == 1 else\
             f" {i + 1} | " if len(str(i+1)) == 2 else\
             f"{i+1} | "
         print(idx + line)
 
-    print("\n============================== Verdict =================================\n")
+    print("\n============================== Verdict ===============================\n")
+    
     if (len(inp) == 0):
         print("Accepted")
         print("\n====================================================================")
         exit(0)
 
     CYK(inp, CNF, source)
-    print("\n========================================================================")
+    
+    print("\n======================================================================")
