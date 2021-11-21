@@ -7,6 +7,8 @@
 <p>Pada tugas besar ini, implementasikanlah compiler untuk Python untuk statement-statement dan sintaks-sintaks bawaan Python. Gunakanlah konsep CFG untuk pengerjaan compiler yang mengevaluasi syntax program. Untuk nama variabel dalam program, gunakanlah FA.</p>
 <p>Algoritma yang dipakai dibebaskan, namun tim asisten menyarankan menggunakan algoritma CYK (Cocke-Younger-Kasami). Algoritma CYK harus menggunakan grammar CNF (Chomsky Normal Form) sebagai grammar masukannya. Oleh karena itu, jika ingin menggunakan CYK buatlah terlebih dahulu grammar dalam CFG (Context Free Grammar), kemudian konversikan grammar CFG tersebut ke grammar CNF.</p>
 
+<h2>Cara Penggunaan Program </h2>
+
 
 ## Kelompok 19 Kelas K03
 ## Anggota Kelompok:
