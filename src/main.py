@@ -121,7 +121,6 @@ if __name__ == "__main__":
     source = inp
 
     inp = processInput(inp)
-    print(inp)
 
     print("Compiling " + str(filePathInput) + "...\n")
     print("Waiting for your verdict...\n")
