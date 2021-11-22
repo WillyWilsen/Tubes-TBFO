@@ -8,6 +8,7 @@ mkey = {"if": "a", "elif": "b", "else": "c", "for": "d", "in": "e", "while": "f"
         "as": "m", "import": "n", "from": "o", "raise": "p", "and": "q", "or": "r", "not": "s", "is": "t", "True": "u", "False": "v", "None": "w", "with": "A"}
 
 
+# Fungsi di bawah ini di gunakan untuk menuliskan kembali source code yang telah di input ke terminal
 def processInput(inp):
     global key
 
@@ -95,7 +96,7 @@ if __name__ == "__main__":
     #apabila user tidak menginput file baru, maka secara default akan menggunakan file
     #inputAcc.py yang telah tersedia
     if (len(sys.argv) < 2):
-        filePathInput = "inputAcc.py"
+        filePathInput = "testcase/inputAcc.py"
     else:
         filePathInput = sys.argv[1]
 
