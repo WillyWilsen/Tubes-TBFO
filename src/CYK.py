@@ -1,4 +1,5 @@
 #Implementasi Algoritma CYK#
+
 def CYK(input, CNF, src):
     n = len(input)
     m = len(CNF)
