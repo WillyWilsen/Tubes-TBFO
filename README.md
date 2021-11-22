@@ -23,11 +23,11 @@ python main.py testcase/<nama-file>
 
 ```
 ## REFERENSI
-'''
+```
 /* https://www.w3schools.com/python/python_regex.asp */
 /* https://github.com/RobMcH/CYK-Parser */
 /* https://www.tutorialspoint.com/compiler_design/compiler_design_syntax_analysis.htm */
-'''
+```
 ## Kelompok 19 Kelas K03
 ## Anggota Kelompok:
 | NIM      | NAMA                     |
