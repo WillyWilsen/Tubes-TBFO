@@ -14,4 +14,3 @@ def matriks(x):
             pass
         else:
             continue
-        print(y)

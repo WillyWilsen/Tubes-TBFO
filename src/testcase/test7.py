@@ -1,14 +1,8 @@
-numbers = [1,2,3,4,5,6,7,8,9,10]
+class Test:
+    for j in range(6):
+        if j == 6 - 3:
+            continue
+        else:
+            continue
+        print("test")
 
-jumlah = 0
-for i in range(len(numbers)):
-    jumlah += numbers[i]
-
-i = 0
-jumlah1 = 0
-while i < len(numbers):
-    jumlah1 += numbers[i]
-    i += 1 
-
-print(jumlah)
-print(jumlah1)
