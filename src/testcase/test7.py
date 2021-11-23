@@ -1,8 +1,5 @@
-class Test:
-    for j in range(6):
-        if j == 6 - 3:
-            continue
-        else:
-            continue
-        print("test")
-
+x = 10
+if  x not > 10:
+    print("not returned True")
+else:
+    print("not returned False")
