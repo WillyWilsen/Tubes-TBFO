@@ -1,7 +1,6 @@
 def do_something(x):
-    ''' ini adalah multiline 
-    
-    comment'''
+    '''This is a sample multiline comment
+    '''
     if x == 0:
         return 0
     elif x + 4 == 1:

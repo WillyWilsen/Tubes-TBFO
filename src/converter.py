@@ -101,7 +101,7 @@ def turntoCNF(CFG):
             for item in production:
                 # Apabila telah ditemukan akan di cek apakah dia variable atau bukan
                 # jika bukan, maka dia merupakan simbol terminal
-                if not(isVariableValid(item) and item not in terminals):
+                if not(isVariableValid(item)) and item not in terminals:
                     terminals.append(item)
         
         # Dibuat sebuah aturan produksi baru yang berdasarkan simbol 
