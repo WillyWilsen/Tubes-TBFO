@@ -12,14 +12,14 @@
 /* 1. Apabila ingin menggunakan testcase yang sudah ada */
 
 cd src  
-python main.py testcase/<nama-file>
+python main.py testcase/<nama-file.py>
 
 /* 2. Apabila ingin menggunakan file yang baru */
 
 /* Upload file yang ingin dijalankan ke dalam folder testcase */
 
 cd src
-python main.py testcase/<nama-file>
+python main.py testcase/<nama-file.py>
 
 ```
 ## REFERENSI
