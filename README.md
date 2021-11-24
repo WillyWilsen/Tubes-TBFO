@@ -9,6 +9,7 @@
 
 ## Cara Penggunaan Program
 ```
+/*Download atau clone repository ini terlebih dahulu*/
 /* 1. Apabila ingin menggunakan testcase yang sudah ada */
 
 cd src  
